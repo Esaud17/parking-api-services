@@ -16,11 +16,12 @@ class CreateParkingTimesTable extends Migration
         Schema::create('parking_times', function (Blueprint $table) {
             $table->bigInteger('id', true);
             $table->bigInteger('car_id')->index('parking_time_FK');
-            $table->double('total_minutes');
-            $table->enum('status', ['process', 'finished', 'pending']);
+            $table->double('total_minutes')->nullable();
+            $table->enum('status', ['process', 'finished', 'pending', 'close']);
             $table->dateTime('car_entry');
-            $table->dateTime('car_out');
+            $table->dateTime('car_out')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

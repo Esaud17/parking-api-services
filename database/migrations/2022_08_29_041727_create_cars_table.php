@@ -18,8 +18,9 @@ class CreateCarsTable extends Migration
             $table->string('plate', 100);
             $table->bigInteger('car_type_id')->index('cars_FK');
             $table->json('info')->nullable();
-            $table->string('uuid', 100);
+            $table->string('uuid', 100)->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

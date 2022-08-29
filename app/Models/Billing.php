@@ -9,16 +9,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 /**
  * Class Billing
- * 
+ *
  * @property int $id
  * @property int $car_id
  * @property float $amount
  * @property array|null $parking_times
  * @property string $status
  * @property float $total_minutes
- * 
+ *
  * @property Car $car
  * @property Collection|Payment[] $payments
  *
@@ -26,8 +28,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Billing extends Model
 {
+    use SoftDeletes;
+
 	protected $table = 'billing';
-	public $timestamps = false;
+	public $timestamps = true;
 
 	protected $casts = [
 		'car_id' => 'int',
