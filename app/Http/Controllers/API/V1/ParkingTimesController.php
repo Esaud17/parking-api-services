@@ -47,16 +47,6 @@ class ParkingTimesController extends Controller
         return response()->json($parkingTime, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ParkingTime  $parkingTime
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ParkingTime $parkingTime)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -155,8 +145,11 @@ class ParkingTimesController extends Controller
      */
     public function destroy(ParkingTime $parkingTime)
     {
-        ParkingTime::where(['status' =>'process'])->update(['status' =>'close']);
-        Billing::where(['status' =>'building'])->update(['status' =>'close']);
+        $result = [];
 
+        $result["times"] = ParkingTime::where(['status' =>'process'])->orWhere(['status' =>'finished'])->update(['status' =>'close']);
+        $result["bill"] =Billing::where(['status' =>'building'])->update(['status' =>'close']);
+
+        return response()->json($result, 201);
     }
 }

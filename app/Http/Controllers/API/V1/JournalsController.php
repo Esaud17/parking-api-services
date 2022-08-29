@@ -17,7 +17,8 @@ class JournalsController extends Controller
      */
     public function index()
     {
-        //
+        $events = Journal::All();
+        return response()->json( $events, 201);
     }
 
     /**
@@ -29,42 +30,8 @@ class JournalsController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
         $journal = Journal::create($data);
-        return response()->json($jarType, 201);
+        return response()->json($journal, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Journal  $journal
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Journal $journal)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Journal  $journal
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Journal $journal)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Journal  $journal
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Journal $journal)
-    {
-        //
-    }
 }
