@@ -19,7 +19,7 @@ class ParkingTimesController extends Controller
      */
     public function index()
     {
-        return  ParkingTime::All()->where('status','pending');
+        return  ParkingTime::join('cars', 'parking_times.car_id', '=', 'cars.id')->where('status','pending')->get(['cars.*' , 'parking_times.*']);
     }
 
     /**
