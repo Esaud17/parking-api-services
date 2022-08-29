@@ -123,6 +123,9 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+
+    'api_key' => env('API_KEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -161,6 +164,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Ejarnutowski\LaravelApiKey\Providers\ApiKeyServiceProvider::class,
 
         /*
          * Package Service Providers...
