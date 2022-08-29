@@ -18,7 +18,7 @@ class CreateBillingTable extends Migration
             $table->bigInteger('car_id')->index('billing_FK');
             $table->double('amount');
             $table->json('parking_times')->nullable();
-            $table->enum('status', ['pending', 'paid', 'cancel']);
+            $table->enum('status', ['pending','building' ,'paid', 'cancel', 'close']);
             $table->double('total_minutes');
             $table->timestamps();
             $table->softDeletes();

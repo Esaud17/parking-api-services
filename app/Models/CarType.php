@@ -31,7 +31,8 @@ class CarType extends Model
 
 	protected $fillable = [
 		'car_type',
-		'description'
+		'description',
+        'rate'
 	];
 
 	public function cars()
