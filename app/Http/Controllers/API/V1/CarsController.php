@@ -32,7 +32,6 @@ class CarsController extends Controller
         $data = $request->all();
 
         $data["uuid"] = Uuid::uuid4();
-        $data["created_at"] =  Carbon::now();
 
         $car = Car::create($data);
         return response()->json($car, 201);

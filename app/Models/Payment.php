@@ -8,16 +8,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 /**
  * Class Payment
- * 
+ *
  * @property int $id
  * @property int $car_id
  * @property int $bill_id
  * @property float $amount
  * @property string $type_payment
  * @property array $employe
- * 
+ *
  * @property Car $car
  * @property Billing $billing
  *
@@ -25,8 +27,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Payment extends Model
 {
-	protected $table = 'payments';
-	public $timestamps = false;
+
+    use SoftDeletes;
+
+    protected $table = 'payments';
+	public $timestamps = true;
 
 	protected $casts = [
 		'car_id' => 'int',

@@ -19,6 +19,7 @@ class CreateJournalTable extends Migration
             $table->bigInteger('car_id')->index('journal_FK');
             $table->enum('type_action', ['in', 'out']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

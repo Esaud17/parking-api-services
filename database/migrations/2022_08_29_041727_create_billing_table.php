@@ -21,6 +21,7 @@ class CreateBillingTable extends Migration
             $table->enum('status', ['pending', 'paid', 'cancel']);
             $table->double('total_minutes');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

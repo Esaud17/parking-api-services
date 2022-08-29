@@ -4,7 +4,10 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\ParkingTime;
+use App\Models\Car;
 use Illuminate\Http\Request;
+
+use Carbon\Carbon;
 
 class ParkingTimesController extends Controller
 {
@@ -15,7 +18,7 @@ class ParkingTimesController extends Controller
      */
     public function index()
     {
-        //
+        return  ParkingTime::All()->where('status','pending');
     }
 
     /**
@@ -26,7 +29,21 @@ class ParkingTimesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $car = Car::where('plate', $data["plate"])->first();
+        $pending = ParkingTime::where(['status'=> 'pending' , 'car_id'=> $car->id])->get();
+        if(count($pending) > 0 ){
+            return response()->json(["status"=>"error","action"=>$pending], 403);
+        }
+
+        $data["car_id"] = $car->id;
+        $data["total_minutes"] =  0;
+        $data["car_entry"] =  Carbon::now();
+        $data["status"] = 'pending';
+
+        $parkingTime = ParkingTime::create($data);
+        return response()->json($parkingTime, 201);
     }
 
     /**

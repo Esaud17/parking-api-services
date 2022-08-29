@@ -18,6 +18,7 @@ class CreateCarTypesTable extends Migration
             $table->string('car_type', 100)->nullable();
             $table->string('description', 100)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

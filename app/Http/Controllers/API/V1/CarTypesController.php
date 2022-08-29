@@ -30,8 +30,6 @@ class CarTypesController extends Controller
     {
         $data = $request->all();
 
-        $data["created_at"] =  Carbon::now();
-
         $carType = CarType::create($data);
         return response()->json($carType, 201);
     }

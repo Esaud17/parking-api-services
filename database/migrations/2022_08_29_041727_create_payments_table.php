@@ -21,6 +21,7 @@ class CreatePaymentsTable extends Migration
             $table->enum('type_payment', ['card', 'cash', 'credit', 'points']);
             $table->json('employe');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

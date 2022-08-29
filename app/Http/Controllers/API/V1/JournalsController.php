@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Journal;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
 class JournalsController extends Controller
 {
     /**
@@ -26,7 +28,10 @@ class JournalsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $journal = Journal::create($data);
+        return response()->json($jarType, 201);
     }
 
     /**

@@ -26,7 +26,10 @@ class BillingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $billing = Billing::create($data);
+        return response()->json($billing, 201);
     }
 
     /**

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
+
 class PaymentsController extends Controller
 {
     /**
@@ -26,7 +28,10 @@ class PaymentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $payment = Payment::create($data);
+        return response()->json($payment, 201);
     }
 
     /**
